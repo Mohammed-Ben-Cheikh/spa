@@ -1,5 +1,5 @@
-import { loadFile, unloadFiles } from "./models/utils.js";
 import router from "./router/index.js";
+import { loadFile, loadPage, unloadFiles } from "./utils/utils.js";
 
 const root = document.getElementById("root");
 const navUl = document.getElementById("nav-ul");
@@ -30,11 +30,12 @@ async function updateContent(pathname) {
   unloadFiles();
   const route = router.find((r) => r.path === pathname);
   if (!route) {
-    root.innerHTML = "<h1>404 Not Found</h1>";
+    await loadFile("/views/assets/css/404.css", "css");
+    root.innerHTML = await loadPage("404");
     return;
   }
-  await loadFile(`/views/assets/css/${route.name}.css`, "css");
-  await loadFile(`/controllers/${route.name}.js`, "js");
   const html = await route.component();
+  loadFile(`/views/assets/css/${route.name}.css`, "css");
   root.innerHTML = html;
+  loadFile(`/controllers/${route.name}.js`, "js");
 }

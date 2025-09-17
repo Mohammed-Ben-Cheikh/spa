@@ -1,4 +1,4 @@
-import { loadPage } from "../models/utils.js";
+import { loadPage } from "../utils/utils.js";
 
 const router = [
   { path: "/", name: "home", component: () => loadPage("home") },

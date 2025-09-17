@@ -57,6 +57,7 @@ function loadFile(url, type) {
       el = document.createElement("script");
       el.src = url;
       el.defer = true;
+      el.type = "module";
     } else if (type === "css") {
       el = document.createElement("link");
       el.href = url;

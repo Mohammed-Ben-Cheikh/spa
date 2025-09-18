@@ -35,7 +35,7 @@ async function updateContent(pathname) {
     return;
   }
   const html = await route.component();
-  loadFile(`/views/assets/css/${route.name}.css`, "css");
   root.innerHTML = html;
+  loadFile(`/views/css/${route.name}.css`, "css");
   loadFile(`/controllers/${route.name}.js`, "js");
 }

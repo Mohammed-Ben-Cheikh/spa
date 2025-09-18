@@ -2,13 +2,6 @@ import router from "./router/index.js";
 import { loadFile, loadPage, unloadFiles } from "./utils/utils.js";
 
 const root = document.getElementById("root");
-const navUl = document.getElementById("nav-ul");
-
-router.forEach((e) => {
-  let li = document.createElement("li");
-  li.innerHTML = `<a href="${e.path}">${e.name}</a>`;
-  navUl.appendChild(li);
-});
 
 // premier rendu
 updateContent(window.location.pathname);

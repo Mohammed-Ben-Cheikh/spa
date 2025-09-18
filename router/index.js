@@ -4,11 +4,6 @@ const router = [
   { path: "/login", name: "login", component: () => loadPage("login") },
   {
     path: "/",
-    name: "dashboard",
-    component: () => loadPage("dashboard"),
-  },
-  {
-    path: "/patients",
     name: "patients",
     component: () => loadPage("patients"),
   },

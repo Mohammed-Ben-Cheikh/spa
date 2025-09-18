@@ -1,4 +1,4 @@
-#root {
+#404 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,13 +10,13 @@
   background-color: #f8f8f8;
 }
 
-#root h1 {
+#404 h1 {
   font-size: 6rem;
   margin: 0;
   color: #e74c3c;
 }
 
-#root p {
+#404 p {
   font-size: 1.5rem;
   margin-top: 1rem;
   color: #555;

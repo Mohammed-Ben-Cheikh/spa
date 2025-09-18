@@ -1,24 +1,7 @@
-import router from "../router/index.js";
-
-
 export async function loadPage(pageName) {
-  const parser = new DOMParser();
-  const layout = await fetch(`/views/page/layout.html`);
-  const component = await fetch(`/views/page/${pageName}.html`);
-  const textLayout = await layout.text();
-  const textComponent = await component.text();
-  const htmlLayout = parser.parseFromString(textLayout, "text/html");
-  const htmlComponent = parser.parseFromString(textComponent, "text/html");
-  const htmlComponentContent = htmlComponent.getElementById("root").innerHTML;
-  htmlLayout.getElementById("content").innerHTML = htmlComponentContent;
-  const navUl = htmlLayout.getElementById("nav-ul");
-  router.forEach((e) => {
-    let li = document.createElement("li");
-    li.innerHTML = `<a href="${e.path}">${e.name}</a>`;
-    navUl.appendChild(li);
-  });
-  console.log(htmlLayout.getElementById("root").innerHTML);
-  return htmlLayout.getElementById("root").innerHTML;
+  const componentModule = await import(`/src/views/page/${pageName}.js`);
+  const componentHTML = componentModule.default();
+  return componentHTML;
 }
 
 export function loadFile(url, type) {

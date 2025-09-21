@@ -15,6 +15,11 @@ const method = document.getElementById("method");
 const dateEl = document.getElementById("date");
 const addEntryBtn = document.getElementById("btn-add-entry");
 const financeBody = document.getElementById("financeBody");
+// Modal elements
+const entryModal = document.getElementById("addEntryModal");
+const openEntryBtn = document.getElementById("btn-add");
+const closeEntryBtn = document.getElementById("close-entry-modal");
+const financeForm = document.getElementById("financeForm");
 
 function currentMonthKey() {
   return (monthEl.value || new Date().toISOString().slice(0, 7)).replace(
@@ -85,7 +90,26 @@ financeBody?.addEventListener("click", (e) => {
   }
 });
 
-addEntryBtn?.addEventListener("click", () => {
+// Open modal for adding entry
+openEntryBtn?.addEventListener("click", () => {
+  financeForm?.reset();
+  // default selection
+  if (entryType) entryType.value = "income";
+  entryModal.style.display = "block";
+});
+
+// Close modal
+closeEntryBtn?.addEventListener(
+  "click",
+  () => (entryModal.style.display = "none")
+);
+window.addEventListener("click", (event) => {
+  if (event.target === entryModal) entryModal.style.display = "none";
+});
+
+// Submit entry form
+financeForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
   const entry = {
     type: entryType.value,
     amount: Number(amount.value) || 0,
@@ -95,12 +119,9 @@ addEntryBtn?.addEventListener("click", () => {
     date: dateEl.value || new Date().toISOString().slice(0, 10),
   };
   db.insert(entry, FIN);
-  // reset some fields
-  amount.value = "";
-  label.value = "";
-  category.value = "";
-  method.value = "";
   render();
+  entryModal.style.display = "none";
+  financeForm.reset();
 });
 
 saveBudgetBtn?.addEventListener("click", () => {

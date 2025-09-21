@@ -6,16 +6,19 @@ const router = [
     path: "/",
     name: "patients",
     component: loadPage("patients"),
+    svg: `/public/patients.svg`,
   },
   {
     path: "/appointments",
     name: "appointments",
     component: loadPage("appointments"),
+    svg: `/public/rendez-vous.svg`,
   },
   {
     path: "/finances",
     name: "finances",
     component: loadPage("finances"),
+    svg: `/public/depenses.svg`,
   },
 ];
 

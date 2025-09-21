@@ -1,23 +1,45 @@
-#404 {
+#content {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.not-found-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 60vh;
   text-align: center;
   font-family: Arial, sans-serif;
   color: #333;
-  background-color: #f8f8f8;
 }
 
-#404 h1 {
-  font-size: 6rem;
+.not-found-container h1 {
+  font-size: 4rem;
   margin: 0;
   color: #e74c3c;
+  margin-bottom: 20px;
 }
 
-#404 p {
+.not-found-container p {
   font-size: 1.5rem;
-  margin-top: 1rem;
+  margin: 20px 0;
   color: #555;
+}
+
+#back-home-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+#back-home-btn:hover {
+  background-color: #2980b9;
 }

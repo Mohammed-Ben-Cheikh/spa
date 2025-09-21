@@ -1,10 +1,9 @@
-const Patients = () => `
-  <div id="root">
-    <div id="404">
-      <h1>404</h1>
-      <p>Oops! The page you are looking for does not exist.</p>
+const NotFound = () => `
+    <div class="not-found-container">
+      <h1>404 - Page Non Trouvée</h1>
+      <p>Oups! La page que vous cherchez n'existe pas.</p>
+      <button id="back-home-btn">Retour à l'accueil</button>
     </div>
-  </div>
 `;
 
-export default Patients;
+export default NotFound;

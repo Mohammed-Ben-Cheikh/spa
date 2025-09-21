@@ -19,10 +19,9 @@ export function loadFile(url, type) {
 
   return new Promise((resolve, reject) => {
     let el;
-
     if (type === "js") {
       el = document.createElement("script");
-      el.src = url;
+      el.src = url + "?t=" + Date.now();
       el.defer = true;
       el.type = "module";
       el.setAttribute("data-dynamic", "true");
@@ -35,16 +34,24 @@ export function loadFile(url, type) {
       reject(new Error("Type must be 'css' or 'js'"));
       return;
     }
-
-    el.onload = resolve;
-    el.onerror = () => reject(new Error(`Failed to load ${url}`));
-
-    if (type === "js") document.body.appendChild(el);
-    else document.head.appendChild(el);
+    el.onload = () => {
+      console.log(`Successfully loaded ${type}: ${url}`);
+      resolve();
+    };
+    el.onerror = () => {
+      console.warn(`Failed to load ${type}: ${url}`);
+      resolve();
+    };
+    if (type === "js") {
+      document.body.appendChild(el);
+    } else {
+      document.head.appendChild(el);
+    }
   });
 }
 
 export function unloadFiles() {
+  // Ne supprimer que les fichiers CSS, garder les scripts JS
   document
     .querySelectorAll("[data-dynamic='true']")
     .forEach((el) => el.remove());

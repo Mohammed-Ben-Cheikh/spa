@@ -1,12 +1,14 @@
 const Layout = () => `
-  <div>
-    <header>
+  <div class="main-block" >
+    <header class="header">
+    <img src="/public/logo.png" alt="">
     </header>
-    <main>
-      <nav>
-        <ul id="nav-ul"></ul>
+    <main class="sup-main-block">
+      <nav class="sidebar">
+        <ul class="sidebar-items" id="nav-ul"></ul>
+        <button id="logout-btn">Déconnexion</button>
       </nav>
-      <section id="content"></section>
+      <section class="content" id="content"></section>
     </main>
   </div>
 `;
